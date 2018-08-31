@@ -6,28 +6,65 @@ const counter1 = document.getElementById('counter-1');
 const counter2 = document.getElementById('counter-2');
 const name1 = document.getElementById('name-1');
 const name2 = document.getElementById('name-2');
+let names = [];
+const list = document.getElementsByClassName('list');
+const li = document.querySelectorAll('li');
 
-cat1.addEventListener('click', function(){
-  //the element has been clicked... do stuff here
-  num1++;
-  if (num1 == 1) {
-    counter1.innerHTML = "I've been clicked " + num1 + " time!";
-  } else {
-    counter1.innerHTML = "I've been clicked " + num1 + " times!";
+let green = new Cat('Green', 'cat-1');
+let blue = new Cat('Blue', 'cat-2');
+let kitty = new Cat('Kitty', 'cat-5');
+
+
+function Cat(name, id) {
+  console.log(this);
+  this.name = name;
+  this.clicks = 0;
+  this.location = document.getElementById(id);
+  this.counter = counter1;
+  this.clickEvent = function() {
+    this.location.addEventListener('click', function(){
+      this.clicks++;
+      counter1.innerHTML = this.clicks;
+    }, false);
   }
-}, false);
-
-cat2.addEventListener('click', function(){
-  //the element has been clicked... do stuff here
-  num2++;
-  if (num2 == 1) {
-    counter2.innerHTML = "I've been clicked " + num2 + " time!";
-  } else {
-    counter2.innerHTML = "I've been clicked " + num2 + " times!";
+  this.addToList = function addToList(name) {
+    let el = document.createElement("li");
+    el.id = name + "ID";
+    el.innerHTML = name;
+    document.getElementById('list').appendChild(el);
   }
-}, false);
+  this.showPic = function showPic() {
+    document.getElementById('item1').addEventListener('click', function(){
+      document.getElementById('cat-1').style.display = "block";
+    })
+  }
+
+  this.clickEvent();
+  this.addToList(this.name);
+  this.showPic();
+}
+
+// maybe take click event out of constructor function
+
+// if item is clicked, update its clicks value and display that to the page
+
+// show image on name click;
 
 
-name1.innerHTML = "Green";
 
-name2.innerHTML = "Blue";
+showPic();
+
+
+
+
+
+
+//
+//
+// name1.innerHTML = "Green";
+//
+// name2.innerHTML = "Blue";
+//
+// function addNames() {
+//   for ()
+// }
