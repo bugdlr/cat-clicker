@@ -1,70 +1,55 @@
-let num1 = 0;
-let num2 = 0;
-const cat1 = document.getElementById('cat-1');
-const cat2 = document.getElementById('cat-2');
-const counter1 = document.getElementById('counter-1');
-const counter2 = document.getElementById('counter-2');
-const name1 = document.getElementById('name-1');
-const name2 = document.getElementById('name-2');
-let names = [];
-const list = document.getElementsByClassName('list');
-const li = document.querySelectorAll('li');
 
-let green = new Cat('Green', 'cat-1');
-let blue = new Cat('Blue', 'cat-2');
-let kitty = new Cat('Kitty', 'cat-5');
+let names = ["cats"];
+
+const green = new Cat('Green');
+const blue = new Cat('Blue');
+const kitty = new Cat('Kitty');
 
 
-function Cat(name, id) {
-  console.log(this);
+function Cat(name) {
+  // add cat names to names array
+  names.push(name);
+
+  // set values
   this.name = name;
   this.clicks = 0;
-  this.location = document.getElementById(id);
-  this.counter = counter1;
-  this.clickEvent = function() {
-    this.location.addEventListener('click', function(){
-      this.clicks++;
-      counter1.innerHTML = this.clicks;
+  this.index = names.indexOf(name);
+  this.picLocation = document.getElementById("cat" + this.index);
+  this.counter = document.getElementById("counter" + this.index);
+  this.item = document.getElementById("item" + this.index);
+  this.nameId = document.getElementById("name" + this.index);
+
+  // set attributes
+
+
+  // attach click event for counter
+  this.clickEvent = function(clicks, counter) {
+    this.picLocation.addEventListener('click', function(){
+      clicks++;
+      counter.innerHTML = clicks;
     }, false);
   }
+
+  // display cat's name on the list
   this.addToList = function addToList(name) {
     let el = document.createElement("li");
-    el.id = name + "ID";
     el.innerHTML = name;
     document.getElementById('list').appendChild(el);
   }
-  this.showPic = function showPic() {
-    document.getElementById('item1').addEventListener('click', function(){
-      document.getElementById('cat-1').style.display = "block";
+
+  // pic slides when name on list is clicked
+  this.showPic = function showPic(item, pic, nameId, name) {
+    item.addEventListener('click', function(){
+      pic.style.display = "block";
+      nameId.innerHTML = name;
     })
   }
 
-  this.clickEvent();
+  this.clickEvent(this.clicks, this.counter);
   this.addToList(this.name);
-  this.showPic();
+  this.showPic(this.item, this.picLocation, this.nameId, this.name);
 }
 
-// maybe take click event out of constructor function
 
-// if item is clicked, update its clicks value and display that to the page
-
-// show image on name click;
-
-
-
-showPic();
-
-
-
-
-
-
-//
-//
-// name1.innerHTML = "Green";
-//
-// name2.innerHTML = "Blue";
-//
-// function addNames() {
-//   for ()
-// }
+// connect pic to cat dynamically instead of in html
+// get pics to slide in
