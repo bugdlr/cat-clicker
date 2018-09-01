@@ -5,7 +5,7 @@ const green = new Cat('Green');
 const blue = new Cat('Blue');
 const orange = new Cat('Orange')
 const grumps = new Cat('Grumps');
-const orb = new Cat('Orb');
+const ninja = new Cat('Ninja');
 
 
 function Cat(name) {
@@ -24,6 +24,7 @@ function Cat(name) {
   let div = document.createElement('div');
   div.setAttribute("id", "name" + this.index);
   div.setAttribute("class", "tile");
+  div.setAttribute("class", "hiding");
   div.appendChild(document.createTextNode(this.name));
 
   let pic = document.createElement('img');
@@ -63,11 +64,14 @@ function Cat(name) {
     document.getElementById('list').appendChild(el);
   }
 
-
   // pic slides when name on list is clicked
   this.showPic = function showPic(nameId) {
     document.getElementById("item" + this.index).addEventListener('click', function(){
-      nameId.style.display = "block";
+      if (nameId.classList.contains("hiding")) {
+        nameId.classList.toggle("slidein");
+      } else {
+      nameId.classList.toggle("hiding");
+      }
     })
   }
 

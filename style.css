@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-size: 24px;
+  color: teal;
 }
 
 body {
@@ -23,30 +24,38 @@ ul p {
 }
 
 #list {
-  color: teal;
   margin: 0 auto;
   list-style: none;
 }
 
-.cat-cards {
+#cat-cards {
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  flex-direction: row;
+  align-items: stretch;
 }
 
-.tile {
+.hiding {
   display: none;
 }
+
+.slidein {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 450px;
+  margin: 20px 100px;
+  font-size: 30px;
+}
+
 
 img {
   height: 300px;
   width: auto;
-  margin: 50px auto;
+  margin: auto;
 }
 
 .counter {
   display: block;
-  color: teal;
   text-align: center;
   margin-bottom: 50px;
 }
