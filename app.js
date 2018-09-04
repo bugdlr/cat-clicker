@@ -60,11 +60,11 @@ function Cat(name) {
   // pic slides when name on list is clicked
   this.showPic = function showPic(nameId) {
     document.getElementById("item-" + this.name).addEventListener('click', function(){
-      if (nameId.classList.contains("hiding")) {
-        nameId.classList.toggle("slidein");
-      } else {
-      nameId.classList.toggle("hiding");
-      }
+      let listEls = Array.from(document.getElementsByClassName("hiding"));
+      listEls.forEach (element => {
+        element.classList.remove('slidein');
+      })
+      nameId.classList.toggle("slidein");
     })
   }
 
@@ -72,6 +72,3 @@ function Cat(name) {
   this.addToList(this.name);
   this.showPic(this.nameId);
 }
-
-
-// get pics to slide in one at a time
